@@ -1,3 +1,9 @@
+%clear {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 body {
   font: 1em/1.2 "Roboto Mono", sans-serif;
   background-color: whitesmoke;
@@ -16,16 +22,44 @@ ul {
   list-style: none;
 }
 
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
 .l-layout {
   width: 1024px;
   margin: 0 auto;
 }
 
+//
+
 .l-header {
-  height: 50px;
+  // height: 50px;
   background-color: #fff;
   margin: 40px 0 20px;
+
+  &::after {
+    @extend %clear;
+  }
 }
+
+.header-logo {
+  float: left;
+  margin: 15px 0;
+
+  img {
+    vertical-align: middle;
+  }
+
+  span {
+    padding-left: 5px;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+}
+
+//
 
 .l-header,
 .l-programming,
@@ -34,19 +68,25 @@ ul {
   // outline: 1px solid #ccc;
 
   &::after {
-    content: "";
-    display: table;
-    clear: both;
+    @extend %clear;
   }
 }
 
 .l-programming {
   background-color: #4285f4;
   float: left;
+
+  .title {
+    color: #fff;
+  }
 }
 
 .l-design {
   float: right;
+
+  .title {
+    color: gray;
+  }
 }
 
 .l-programming,
@@ -61,20 +101,60 @@ ul {
   font-weight: bold;
 }
 
-.prog-list a{
-  color: #fff;
+
+
+.prog-list a,
+.design-list a{
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    transition: width .3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.prog-list {
+  .date {
+    color: #fff;
+  }
+  a {
+    color: #fff;
+
+    &::after {
+      background-color: #fff;
+    }
+  }
+}
+
+.design-list {
+  .date {
+    color: gray;
+  }
+  a {
+    &::after {
+      background-color: #808080;
+    }
+  }
 }
 
 .prog-list,
 .design-list {
-
-  // background-color: #fff;
   box-sizing: border-box;
   padding: 15px 0;
-  // box-shadow: rgba(219, 219, 219, 0.56) 0px 3px 8px 0px;
 
   &_item {
 
+                border-bottom: 1px solid rgba(255,255,255,0);
     &-link {
       display: block;
       margin-bottom: 10px;
@@ -86,7 +166,6 @@ ul {
       transition: all .1s ease-out;
 
       &:hover {
-        border-bottom: 1px solid rgba(255,255,255,0);
         transition: all .1s ease-out;
       }
     }

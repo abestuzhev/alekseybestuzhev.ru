@@ -1,3 +1,10 @@
+.l-header::after,
+.l-programming::after,
+.l-design::after {
+  content: "";
+  display: table;
+  clear: both; }
+
 body {
   font: 1em/1.2 "Roboto Mono", sans-serif;
   background-color: whitesmoke; }
@@ -13,32 +20,43 @@ ul {
   margin: 0;
   list-style: none; }
 
+h2 {
+  margin: 0;
+  padding: 0; }
+
 .l-layout {
   width: 1024px;
   margin: 0 auto; }
 
 .l-header {
-  height: 50px;
   background-color: #fff;
   margin: 40px 0 20px; }
+
+.header-logo {
+  float: left;
+  margin: 15px 0; }
+  .header-logo img {
+    vertical-align: middle; }
+  .header-logo span {
+    padding-left: 5px;
+    font-weight: bold;
+    vertical-align: middle; }
 
 .l-header,
 .l-programming,
 .l-design {
   box-sizing: border-box; }
-  .l-header::after,
-  .l-programming::after,
-  .l-design::after {
-    content: "";
-    display: table;
-    clear: both; }
 
 .l-programming {
   background-color: #4285f4;
   float: left; }
+  .l-programming .title {
+    color: #fff; }
 
 .l-design {
   float: right; }
+  .l-design .title {
+    color: gray; }
 
 .l-programming,
 .l-design {
@@ -49,25 +67,55 @@ ul {
   font-size: .7em;
   font-weight: bold; }
 
+.prog-list a,
+.design-list a {
+  position: relative;
+  display: inline-block; }
+  .prog-list a::after,
+  .design-list a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    transition: width .3s ease; }
+  .prog-list a:hover::after,
+  .design-list a:hover::after {
+    width: 100%; }
+
+.prog-list .date {
+  color: #fff; }
+
 .prog-list a {
   color: #fff; }
+  .prog-list a::after {
+    background-color: #fff; }
+
+.design-list .date {
+  color: gray; }
+
+.design-list a::after {
+  background-color: #808080; }
 
 .prog-list,
 .design-list {
   box-sizing: border-box;
   padding: 15px 0; }
-  .prog-list_item-link,
-  .design-list_item-link {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-    text-decoration: none;
-    color: gray;
-    transition: all .1s ease-out; }
-    .prog-list_item-link:hover,
-    .design-list_item-link:hover {
-      border-bottom: 1px solid rgba(255, 255, 255, 0);
+  .prog-list_item,
+  .design-list_item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0); }
+    .prog-list_item-link,
+    .design-list_item-link {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+      text-decoration: none;
+      color: gray;
       transition: all .1s ease-out; }
+      .prog-list_item-link:hover,
+      .design-list_item-link:hover {
+        transition: all .1s ease-out; }
 
 @media screen and (max-width: 960px) {
   .l-layout {
